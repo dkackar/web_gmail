@@ -1,6 +1,5 @@
 class SpangularController < ApplicationController
-
-  # landing for Angular app
+  before_action :authenticate_user!
 
   def index
 
