@@ -21,6 +21,7 @@ gem "angular-dragdrop-rails"
 source "https://rails-assets.org" do
   gem "rails-assets-angular-devise"
 end
+gem 'google-api-client'
 
 group :development, :test do
   gem 'byebug'
