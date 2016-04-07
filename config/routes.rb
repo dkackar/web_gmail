@@ -24,4 +24,6 @@ Rails.application.routes.draw do
     end
   end
 
+
+  get '/oauth2callback', to: 'users#index'
 end
