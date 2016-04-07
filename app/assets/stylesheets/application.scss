@@ -1,0 +1,64 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+
+ *= require_self
+ *= require xeditable
+ *= require_tree .
+
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+ul.dropdown-menu {
+    background-color: cyan;
+}
+
+.list-border {
+  border: 1px dashed #333;
+}
+
+.hr-line {
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: red -moz-use-text-color red;
+  border-style: solid none;
+  border-width: 2px 0;
+  margin: 18px 0;
+}
+
+.list-class:hover {
+    border: solid; 
+    float: left;
+    background-color: #ffffe6;
+}
+
+.list-background {
+  background-color: #e6e6e6;
+  border-radius: 10px;
+  margin:3px;
+}
+
+.card-background {
+  background-color: #F5FFFA;
+  border-radius: 10px;
+}
+
+.do-center {
+  text-align: center;
+}
+
+.board-title {
+  color:white;
+}

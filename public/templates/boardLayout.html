@@ -1,0 +1,143 @@
+
+<h3 class="text-center board-title" editable-text="currentBoard.title" 
+    onbeforesave="saveBoard($data)" e-required>
+     {{ currentBoard.title || 'empty'}} 
+</h3>
+
+<div class="text-center">
+  <button class="btn btn-info btn-sm"
+          type="button" data-toggle="modal" 
+          data-target="#listModal">
+          Add List
+  </button>
+  <br><br>
+</div> 
+
+<!--Pops up a list modal to enter list details -->
+<div class="modal fade" id="listModal" tabindex="-1" role="dialog" 
+     aria-labelledby="listModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <button type="button" class="close" 
+           data-dismiss="modal">
+               <span aria-hidden="true">&times;</span>
+               <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title" id="listModalLabel">
+            New List
+        </h4>
+      </div>
+      
+      <div class="modal-body">
+        
+        <form class="form-horizontal" name="listForm" role="form">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="list-title">Name</label>
+            <div class="col-sm-10">
+              <input type="text" ng-model="list_title" class="form-control" 
+                     id="list-title" name="list_title" ng-required="true"
+                     placeholder="<list title>"/>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" 
+                ng-click="addList(listForm.$valid)">
+          Save List
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-2 col-lg-2 side-bar">
+  
+    <div class="dropdown">
+      <button class="btn btn-info btn-sm dropdown-toggle" type="button" 
+              data-toggle="dropdown">
+              Your Boards
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-center">
+        <li ng-repeat="board in boards | orderBy:'created_at'">
+            <div ng-click="selectBoard(board)">
+              <a ui-sref="board">{{board.title}}</a>
+              <a ui-sref="board" ng-click="deleteBoard(board)">"X"</a>
+            </div>
+        </li>
+      </ul>
+    </div>
+
+    <!--Pops up a board modal to enter board details -->
+    <div>
+      <br><br>
+      <button class="btn btn-info btn-sm" type="button" data-toggle="modal" 
+              data-target="#boardModal">
+              Create a New Board
+      </button>
+    </div>
+
+    <div class="modal fade" id="boardModal" tabindex="-1" role="dialog" 
+         aria-labelledby="boardModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal">
+                   <span aria-hidden="true">&times;</span>
+                   <span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title" id="boardModalLabel">
+                New Board
+            </h4>
+          </div>
+          
+
+          <div class="modal-body">
+            
+            <form class="form-horizontal" name="boardForm" role="form">
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="board-title">Name</label>
+                <div class="col-sm-10">
+                  <input type="text" ng-model="board_title" class="form-control" 
+                         id="board-title" name="board_title" ng-required="true"
+                         placeholder="<board title>"/>
+                </div>
+              </div>
+            </form>
+          </div>
+    
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" 
+                    ng-click="createBoard(boardForm.$valid)">
+              Save Board
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Modal -->
+
+  </div>
+
+  <!-- to show all lists in the current board, show-list directive --> 
+  <div class="col-md-10 col-lg-10">
+    <div ng-repeat="list in lists" show-list list="list" 
+         add-card="addCard()" remove-list="removeList(list)" 
+         remove-card="removeCard(card,list)"
+         new-card="newCard(list)" onaftersave="saveList(list)">
+    </div>
+  </div>  
+
+</div>
+
+
+<div ui-view></div>
